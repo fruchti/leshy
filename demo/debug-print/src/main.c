@@ -15,6 +15,11 @@ int main(void)
     buffer[strlen(buffer)] = '\n';
     buffer[strlen(buffer) + 1] = 0;
     Debug_Print(buffer);
+    strcpy(buffer, "The build date is ");
+    itoa(BUILD_DATE, buffer + strlen(buffer), 10);
+    buffer[strlen(buffer)] = '\n';
+    buffer[strlen(buffer) + 1] = 0;
+    Debug_Print(buffer);
 
     while(1)
     {
