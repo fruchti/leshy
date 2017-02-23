@@ -91,6 +91,9 @@ void init_spi (void)
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
     RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+    
+    // Systick every millisecond
+    SysTick_Config(48000000 / 1000 - 1);
 
     // SPI pins
     GPIOA->MODER &= ~((3 << (SD_PIN_SCK << 1)) | (3 << (SD_PIN_MISO << 1)) |\
@@ -123,9 +126,9 @@ BYTE xchg_spi (
 	BYTE dat	/* Data to send */
 )
 {
-	*((uint8_t*)&SPI1->DR) = dat;
+    *((uint8_t*)&SPI1->DR) = dat;
     while(~SPI1->SR & SPI_SR_RXNE);
-	return (BYTE)SPI1->DR;
+    return (BYTE)SPI1->DR;
 }
 
 
@@ -621,3 +624,7 @@ void disk_timerproc (void)
 	Stat = s;
 }
 
+void SysTick_Handler(void)
+{
+    disk_timerproc();
+}

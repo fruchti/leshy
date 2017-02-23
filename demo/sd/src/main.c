@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define INTERVAL 1
+#define INTERVAL 100       // Logging intverval in milliseconds
 
 FATFS FatFs;
 FIL logfile;
@@ -32,7 +32,7 @@ void StartLogging(void)
                     "This file was written by a simple STM32F0 SD card example.\n"
                     "More specifically, by build number %d, created on %d.\n"
                     "The example provides a simple temperature logger:\n"
-                    "Time (s), Temperature (degrees Celsius)\n", BUILD_NUMBER, BUILD_DATE);
+                    "Time (ms), Temperature (°C)\n", BUILD_NUMBER, BUILD_DATE);
 
             // SD card is mounted and the log file open.
             // Everything went OK, so LED 1 can be turned off
@@ -66,8 +66,6 @@ int main(void)
     // Enable button pull-up
     GPIOA->PUPDR |= (1 << (PIN_BUTTON << 1));
 
-    SD_Init();
-
     // The ADC is used for simple and inaccurate temperature measurements
     RCC->APB2ENR |= RCC_APB2ENR_ADCEN;
     ADC1->CR |= ADC_CR_ADEN;
@@ -79,7 +77,7 @@ int main(void)
     // It's time to initialise the timer for our logging purposes
     // It should issue an interrupt request every n seconds
     RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
-    TIM3->PSC = (1000 * INTERVAL - 1);
+    TIM3->PSC = INTERVAL - 1;
     TIM3->ARR = 48000;
 
     // Enable the overflow interrupt
@@ -120,9 +118,10 @@ void TIM3_IRQHandler(void)
 
     ADC1->CR |= ADC_CR_ADSTART;
     while(ADC1->CR & ADC_CR_ADSTART);
-    int temp = ((1.43f - (ADC1->DR / 4095.0f * 3.3f)) / 4.3e-3f + 25.0f) * 100;
+    //int temp = ((1.43f - (ADC1->DR / 4095.0f * 3.3f)) / 4.3e-3f + 25.0f) * 100;
+    int temp = (3575580 - 1874 * ADC1->DR) / 100;
 
-    f_printf(&logfile, "%05d, %d.%02d\n", logtime * INTERVAL, temp / 100, temp % 100);
+    f_printf(&logfile, "%08d, %d.%02d\n", logtime * INTERVAL, temp / 100, temp % 100);
     logtime++;
 
     // Disable LED 5 again and clear the interrupt flag
