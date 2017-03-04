@@ -24,7 +24,7 @@ BUILD_ID_FLAGS = -Xlinker --defsym -Xlinker __BUILD_DATE=$$(date +'%Y%m%d') \
 				 -Xlinker --defsym -Xlinker __BUILD_NUMBER=$$(cat $(BUILD_NUMBER_FILE))
 
 CURRENT_BUILD_CONFIG := $(shell cat makefile | md5sum) DEBUG = $(DEBUG) CUBE_DIR = $(CUBE_DIR)
-LAST_BUILD_CONFIG := $(shell cat $(BUILD_DIR)/build-config.txt)
+LAST_BUILD_CONFIG := $(shell if [ -e $(BUILD_DIR)/build-config.txt ] ; then cat $(BUILD_DIR)/build-config.txt ; fi)
 
 CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork -mfloat-abi=soft -Os \
 		 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -mlong-calls \
@@ -61,6 +61,7 @@ $(foreach directory,$(LOCAL_LIBS),$(eval $(call define_lib_compile_rules,$(direc
 $(STARTUP_OBJECTS): $(BUILD_DIR)/%.o: $(STARTUP_SOURCE_DIR)/%.s
 	$(CC) $< -c -o $@ $(CFLAGS)
 
+$(LOCAL_DEPENDS):| $(BUILD_DIR)
 $(LOCAL_DEPENDS): $(BUILD_DIR)/%.d: $(LOCAL_SOURCE_DIR)/%.c
 	@set -e; rm -f $@; $(CC) -MM $(CFLAGS) $< > $@.$$$$; sed 's,\($*\)\.o[ :]*,build\/\1.o $@ : ,g' < $@.$$$$ > $@; rm -f $@.$$$$
 
@@ -73,7 +74,7 @@ $(BUILD_DIR)/$(PROJECT).bin: $(BUILD_DIR)/$(PROJECT).elf
 	$(OBJCOPY) -O binary -S $< $@
 
 $(BUILD_DIR):
-	if [ ! -d "$(BUILD_DIR)" ]; then mkdir "$(BUILD_DIR)"; fi
+	@if [ ! -d "$(BUILD_DIR)" ]; then mkdir "$(BUILD_DIR)"; fi
 
 $(BUILD_NUMBER_FILE): $(OBJECTS)
 	@if ! test -f $(BUILD_NUMBER_FILE); then echo 0 > $(BUILD_NUMBER_FILE); else \

@@ -3,7 +3,7 @@
 This is a small breakout board for the STM32F030F4P6 microcontroller,
 containing:
 
- - An LDO, alternatively a 1117-3.3 or a MCP1700-3302 (or compatible)
+ - A LDO, alternatively a 1117-3.3 or a MCP1700-3302 (or compatible)
  - 6 LEDs, one as a power LED, the other 5 controllable by the controller
  - A reset and a freely available pushbutton
  - A micro-SD slot
@@ -20,7 +20,7 @@ tested on linux.
 
 ### Building, dependencies
 
-The build requires the `arm-none-eabi-binutils` and the
+The build requires `arm-none-eabi-binutils` and the
 [STM32CubeF0](http://www.st.com/en/embedded-software/stm32cubef0.html) firmware
 package for the necessary CMSIS header files. Its location must be set in
 `demo/config.mk`. After editing this file, please run
@@ -52,3 +52,4 @@ OpenOCD like:
 
 As a matter of debugging, only text messages via semihosting are implemented so
 far. These are displayed in OpenOCD. See the `debug-print` example for details.
+Apart from that, of course `arm-none-eabi-gdb` or a complete IDE can be used.
