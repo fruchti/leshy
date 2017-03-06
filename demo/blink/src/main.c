@@ -1,6 +1,6 @@
 #include "main.h"
 
-volatile uint8_t counter = 0;
+volatile unsigned int counter = 0;
 volatile bool inverse = false;
 
 int main(void)
@@ -33,7 +33,7 @@ int main(void)
 
 void TIM14_IRQHandler(void)
 {
-    if(TIM14->SR | TIM_SR_UIF)
+    if(TIM14->SR & TIM_SR_UIF)
     {
         uint8_t pattern = 1 << counter;
 
@@ -47,11 +47,12 @@ void TIM14_IRQHandler(void)
         GPIOA->BSRR = odr;
 
         if(inverse)
-            counter++;
+            counter += 1;
         else
-            counter--;
+            counter += 5;
         counter %= 6;
 
         TIM14->SR &= ~TIM_SR_UIF;
     }
+    NVIC_ClearPendingIRQ(TIM14_IRQn);
 }
