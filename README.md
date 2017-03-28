@@ -1,4 +1,4 @@
-# stm32f0board
+# leshy
 
 This is a small breakout board for the STM32F030F4P6 microcontroller,
 containing:
