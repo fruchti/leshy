@@ -1,23 +1,35 @@
 PROJECT = main
-LOCAL_SOURCE_DIR = src
-LOCAL_LIBS = 
+SOURCE_DIRS = src inc/fatfs-stm32
 BUILD_DIR = build
 
 DEBUG := yes
 
-include ../config.mk
+-include ../config.mk
 
+CUBE_DIR ?= /opt/stm32cube/STM32Cube_FW_F0_V1.6.0
 CUBE_DEVICE = STM32F0xx
 H_DEVICE = STM32F030x6
 STARTUP_SOURCE_DIR = $(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Source/Templates/gcc
-
-LOCAL_SOURCES = $(wildcard $(LOCAL_SOURCE_DIR)/*.c)
-LOCAL_LIB_SOURCES = $(foreach dir,$(LOCAL_LIBS),$(wildcard $(dir)/*.c))
 STARTUP_SOURCES = $(STARTUP_SOURCE_DIR)/startup_stm32f030x6.s
 
 ifeq ($(DEBUG),yes)
 DEBUG_FLAGS = -DDEBUG -g3
 endif
+
+CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork \
+		 -mfloat-abi=soft -Os -fmessage-length=0 -fsigned-char \
+		 -ffunction-sections -fdata-sections -mlong-calls -Wall -Xlinker \
+		 --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
+		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include \
+		 -D$(H_DEVICE) -Tld/stm32f030f4_flash.ld \
+		 -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
+		 $(addprefix -I,$(SOURCE_DIRS)) $(DEBUG_FLAGS)
+
+RM = rm -f
+CC = arm-none-eabi-gcc
+OBJCOPY = arm-none-eabi-objcopy
+SIZE = arm-none-eabi-size
+OBJDUMP = arm-none-eabi-objdump
 
 BUILD_NUMBER_FILE = build-number.txt
 BUILD_ID_FLAGS = -Xlinker --defsym -Xlinker __BUILD_DATE=$$(date +'%Y%m%d') \
@@ -26,49 +38,32 @@ BUILD_ID_FLAGS = -Xlinker --defsym -Xlinker __BUILD_DATE=$$(date +'%Y%m%d') \
 CURRENT_BUILD_CONFIG := $(shell cat makefile | md5sum) DEBUG = $(DEBUG) CUBE_DIR = $(CUBE_DIR)
 LAST_BUILD_CONFIG := $(shell if [ -e $(BUILD_DIR)/build-config.txt ] ; then cat $(BUILD_DIR)/build-config.txt ; fi)
 
-CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork -mfloat-abi=soft -Os \
-		 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -mlong-calls \
-		 -Wall -Xlinker --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
-		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include -D$(H_DEVICE) \
-		 -Tld/stm32f030f4_flash.ld -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
-		 $(addprefix -I,$(LOCAL_LIBS)) $(DEBUG_FLAGS)
-
-RM = rm -f
-CC = arm-none-eabi-gcc
-OBJCOPY = arm-none-eabi-objcopy
-SIZE = arm-none-eabi-size
-OBJDUMP = arm-none-eabi-objdump
-
-LOCAL_OBJECTS = $(patsubst $(LOCAL_SOURCE_DIR)/%.c, $(BUILD_DIR)/%.o, $(LOCAL_SOURCES))
-LOCAL_LIB_OBJECTS = $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(notdir $(LOCAL_LIB_SOURCES)))))
+SOURCES = $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.c))
+OBJECTS = $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(notdir $(SOURCES)))))
+DEPENDS = $(addprefix $(BUILD_DIR)/,$(addsuffix .d,$(basename $(notdir $(SOURCES)))))
 STARTUP_OBJECTS = $(patsubst $(STARTUP_SOURCE_DIR)/%.s, $(BUILD_DIR)/%.o, $(STARTUP_SOURCES))
-OBJECTS = $(LOCAL_OBJECTS) $(LOCAL_LIB_OBJECTS) $(STARTUP_OBJECTS)
-LOCAL_DEPENDS = $(patsubst $(LOCAL_SOURCE_DIR)/%.c, $(BUILD_DIR)/%.d, $(LOCAL_SOURCES))
 
 .DEFAULT_GOAL = all
 .DELETE_ON_ERROR:
 
-$(LOCAL_OBJECTS): $(BUILD_DIR)/%.o: $(LOCAL_SOURCE_DIR)/%.c
-	$(CC) $< -c -o $@ $(CFLAGS)
-
-define define_lib_compile_rules
-$(LOCAL_LIB_OBJECTS): $(BUILD_DIR)/%.o: $(1)/%.c
+define define_compile_rules
+$(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(notdir $(wildcard $(1)/*.c))))): $(BUILD_DIR)/%.o: $(1)/%.c
 	$$(CC) $$(CFLAGS) -o $$@ -c $$<
+$(addprefix $(BUILD_DIR)/,$(addsuffix .d,$(basename $(notdir $(wildcard $(1)/*.c))))): $(BUILD_DIR)/%.d: $(1)/%.c
+	@set -e; rm -f $$@; $$(CC) -MM $$(CFLAGS) $$< > $$@.$$$$$$$$; sed 's,\($$*\)\.o[ :]*,build\/\1.o $$@ : ,g' < $$@.$$$$$$$$ > $$@; rm -f $$@.$$$$$$$$
 endef
 
-$(foreach directory,$(LOCAL_LIBS),$(eval $(call define_lib_compile_rules,$(directory))))
+$(foreach directory,$(SOURCE_DIRS),$(eval $(call define_compile_rules,$(directory))))
 
 $(STARTUP_OBJECTS): $(BUILD_DIR)/%.o: $(STARTUP_SOURCE_DIR)/%.s
 	$(CC) $< -c -o $@ $(CFLAGS)
 
-$(LOCAL_DEPENDS):| $(BUILD_DIR)
-$(LOCAL_DEPENDS): $(BUILD_DIR)/%.d: $(LOCAL_SOURCE_DIR)/%.c
-	@set -e; rm -f $@; $(CC) -MM $(CFLAGS) $< > $@.$$$$; sed 's,\($*\)\.o[ :]*,build\/\1.o $@ : ,g' < $@.$$$$ > $@; rm -f $@.$$$$
+$(DEPENDS):| $(BUILD_DIR)
 
-include $(LOCAL_DEPENDS) 
+include $(DEPENDS) 
 
-$(BUILD_DIR)/$(PROJECT).elf: $(OBJECTS) $(BUILD_NUMBER_FILE)
-	$(CC) $(OBJECTS) $(CFLAGS) $(BUILD_ID_FLAGS) -o $@
+$(BUILD_DIR)/$(PROJECT).elf: $(OBJECTS) $(STARTUP_OBJECTS) $(BUILD_NUMBER_FILE)
+	$(CC) $(OBJECTS) $(STARTUP_OBJECTS) $(CFLAGS) $(BUILD_ID_FLAGS) -o $@
 
 $(BUILD_DIR)/$(PROJECT).bin: $(BUILD_DIR)/$(PROJECT).elf
 	$(OBJCOPY) -O binary -S $< $@
@@ -76,7 +71,7 @@ $(BUILD_DIR)/$(PROJECT).bin: $(BUILD_DIR)/$(PROJECT).elf
 $(BUILD_DIR):
 	@if [ ! -d "$(BUILD_DIR)" ]; then mkdir "$(BUILD_DIR)"; fi
 
-$(BUILD_NUMBER_FILE): $(OBJECTS)
+$(BUILD_NUMBER_FILE): $(OBJECTS) $(STARTUP_OBJECTS)
 	@if ! test -f $(BUILD_NUMBER_FILE); then echo 0 > $(BUILD_NUMBER_FILE); else \
 	echo $$(($$(cat $(BUILD_NUMBER_FILE)) + 1)) > $(BUILD_NUMBER_FILE) ; fi
 
@@ -89,7 +84,7 @@ all: incrementalbuild
 endif
 
 .PHONY: incrementalbuild
-incrementalbuild: $(BUILD_DIR) $(OBJECTS) $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin
+incrementalbuild: $(BUILD_DIR) $(OBJECTS) $(STARTUP_OBJECTS) $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin
 	$(SIZE) $(BUILD_DIR)/$(PROJECT).elf
 	@echo "$(CURRENT_BUILD_CONFIG)" > $(BUILD_DIR)/build-config.txt
 
