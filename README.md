@@ -1,5 +1,7 @@
 # leshy
 
+![PCB render](https://raw.githubusercontent.com/fruchti/leshy/master/kicad/board.png)
+
 This is a small breakout board for the STM32F030F4P6 microcontroller,
 containing:
 
