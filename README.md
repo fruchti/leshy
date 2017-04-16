@@ -28,7 +28,7 @@ package for the necessary CMSIS header files. Its location must be set in
 `demo/config.mk`. After editing this file, please run
 
 ```
-# git update-index --skip-worktree demo/config.mk
+$ git update-index --skip-worktree demo/config.mk
 ```
 
 if you plan on contributing to this repository. This command tells git to ignore
@@ -49,7 +49,7 @@ Each project directory includes a OpenOCD script, so you just have to start
 OpenOCD like:
 
 ```
-# openocd -f flash.cfg
+$ openocd -f flash.cfg
 ```
 
 As a matter of debugging, only text messages via semihosting are implemented so
