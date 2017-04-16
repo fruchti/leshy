@@ -1,5 +1,5 @@
 PROJECT = main
-SOURCE_DIRS = src inc/fatfs-stm32
+SOURCE_DIRS = src
 BUILD_DIR = build
 
 DEBUG := yes
@@ -18,8 +18,8 @@ endif
 
 CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork \
 		 -mfloat-abi=soft -Os -fmessage-length=0 -fsigned-char \
-		 -ffunction-sections -fdata-sections -mlong-calls -Wall -Xlinker \
-		 --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
+		 -ffunction-sections -fdata-sections --specs nano.specs -mlong-calls \
+		 -Wall -Xlinker --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
 		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include \
 		 -D$(H_DEVICE) -Tld/stm32f030f4_flash.ld \
 		 -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
