@@ -1,5 +1,5 @@
 PROJECT = main
-SOURCE_DIRS = src inc/fatfs-stm32
+SOURCE_DIRS = src third-party/fatfs-stm32
 BUILD_DIR = build
 
 DEBUG := yes
