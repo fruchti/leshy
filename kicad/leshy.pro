@@ -1,4 +1,4 @@
-update=Fr 09 Sep 2016 22:12:58 CEST
+update=Mo 27 Nov 2017 18:51:20 CET
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=/usr/share/kicad/fruchtilib/lib
@@ -58,3 +56,5 @@ LibName26=transformer
 LibName27=transistor
 LibName28=triac
 LibName29=xilinx
+[general]
+version=1
