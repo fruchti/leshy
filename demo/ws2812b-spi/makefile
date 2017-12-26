@@ -1,4 +1,5 @@
 PROJECT = main
+COMMON_DIR = ../common
 SOURCE_DIRS = src
 BUILD_DIR = build
 
@@ -21,7 +22,7 @@ CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork \
 		 -ffunction-sections -fdata-sections --specs nano.specs -mlong-calls \
 		 -Wall -Xlinker --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
 		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include \
-		 -D$(H_DEVICE) -Tld/stm32f030f4_flash.ld \
+		 -D$(H_DEVICE) -T$(COMMON_DIR)/ld/stm32f030f4_flash.ld \
 		 -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
 		 $(addprefix -I,$(SOURCE_DIRS)) $(DEBUG_FLAGS)
 
@@ -90,7 +91,7 @@ incrementalbuild: $(BUILD_DIR) $(OBJECTS) $(STARTUP_OBJECTS) $(BUILD_DIR)/$(PROJ
 
 .PHONY: program
 program: $(BUILD_DIR)/$(PROJECT).bin
-	if ps -e | grep openocd ; then arm-none-eabi-gdb -batch -x flash.gdb ; else st-flash --reset write $(BUILD_DIR)/$(PROJECT).bin 0x8000000 ; fi
+	if ps -e | grep openocd ; then arm-none-eabi-gdb -batch -x $(COMMON_DIR)/flash.gdb ; else st-flash --reset write $(BUILD_DIR)/$(PROJECT).bin 0x8000000 ; fi
 
 .PHONY: clean
 clean:

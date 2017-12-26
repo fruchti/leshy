@@ -1,9 +1,10 @@
 PROJECT = main
-SOURCE_DIRS = src third-party/libfixmath/libfixmath third-party/libfixmatrix \
-			  third-party/FreeRTOS/FreeRTOS/Source third-party/FreeRTOS/FreeRTOS/Source/portable/GCC/ARM_CM0
-ADDITIONAL_SOURCES = third-party/FreeRTOS/FreeRTOS/Source/portable/MemMang/heap_1.c 
-INCLUDE_DIRS = third-party/FreeRTOS/FreeRTOS/Source/include
-EXCLUDE_SOURCES = fixmatrix_unittests.c fixquat_unittests.c fixvector3d_unittests.c
+COMMON_DIR = ../common
+SOURCE_DIRS = src $(COMMON_DIR)/third-party/FreeRTOS/FreeRTOS/Source \
+			  $(COMMON_DIR)/third-party/FreeRTOS/FreeRTOS/Source/portable/GCC/ARM_CM0
+ADDITIONAL_SOURCES = $(COMMON_DIR)/third-party/FreeRTOS/FreeRTOS/Source/portable/MemMang/heap_1.c 
+INCLUDE_DIRS = $(COMMON_DIR)/third-party/FreeRTOS/FreeRTOS/Source/include
+EXCLUDE_SOURCES = 
 BUILD_DIR = build
 
 DEBUG := yes
@@ -24,7 +25,7 @@ CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork \
 		 --specs rdimon.specs -mlong-calls  -Wall -Werror -Xlinker \
 		 --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
 		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include \
-		 -D$(H_DEVICE) -D_DEFAULT_SOURCE -DFIXMATH_NO_CACHE -Tld/stm32f030f4_flash.ld \
+		 -D$(H_DEVICE) -D_DEFAULT_SOURCE -DFIXMATH_NO_CACHE -T$(COMMON_DIR)/ld/stm32f030f4_flash.ld \
 		 -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
 		 $(addprefix -I,$(SOURCE_DIRS) $(INCLUDE_DIRS)) $(DEBUG_FLAGS)
 
@@ -114,7 +115,7 @@ incrementalbuild: $(BUILD_DIR) $(OBJECTS) $(STARTUP_OBJECTS) $(BUILD_DIR)/$(PROJ
 
 .PHONY: program
 program: $(BUILD_DIR)/$(PROJECT).bin
-	if ps -e | grep openocd ; then arm-none-eabi-gdb -batch -x flash.gdb ; else st-flash --reset write $(BUILD_DIR)/$(PROJECT).bin 0x8000000 ; fi
+	if ps -e | grep openocd ; then arm-none-eabi-gdb -batch -x $(COMMON_DIR)/flash.gdb ; else st-flash --reset write $(BUILD_DIR)/$(PROJECT).bin 0x8000000 ; fi
 
 .PHONY: clean
 clean:
