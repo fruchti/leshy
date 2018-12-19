@@ -1,7 +1,9 @@
 #include "main.h"
 
-int SetTemperatureDisplayCounter = 0;
-int DisplayUpdateCounter = 0;
+volatile int SetTemperatureDisplayCounter = 2 * CONFIG_SET_DISPLAY_TIME
+    + 7 * CONFIG_SEGMENT_TEST_TIME + CONFIG_BUILD_DISPLAY_TIME;
+volatile int DisplayUpdateCounter = 0;
+volatile bool NVSSavePending = false;
 
 int main(void)
 {
@@ -15,9 +17,13 @@ int main(void)
     TIM16->CR1 = TIM_CR1_ARPE | TIM_CR1_CEN;
 
     Display_Init();
+
+    NVS_Load();
+    PID_SetTemperature = NVS_Data->set_temperature;
+
     PID_Init();
     Encoder_Init();
-
+    
     while(1)
     {
         __WFI();
@@ -58,6 +64,13 @@ int main(void)
                 Display_Blinking = false;
             }
         }
+
+        if(NVSSavePending)
+        {
+            NVSSavePending = false;
+            NVS_Data->set_temperature = PID_SetTemperature;
+            NVS_Save();
+        }
     }
 
     return 0;
@@ -70,6 +83,10 @@ void TIM16_IRQHandler(void)
     if(SetTemperatureDisplayCounter > 0)
     {
         SetTemperatureDisplayCounter--;
+        if(SetTemperatureDisplayCounter == 0)
+        {
+            NVSSavePending = true;
+        }
     }
     if(DisplayUpdateCounter > 0)
     {

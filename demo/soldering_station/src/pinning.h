@@ -34,6 +34,9 @@
 
 #define PIN_PWM             10  // PA10 - TIM1_CH3
 
+#define PIN_ENC_P           13  // PA13 - Encoder pushbutton
+#define PIN_SENSOR          14  // PA14 - Motion sensor
+
 // Port B
 #define PIN_PTC             1   // PB1  - ADC1_IN9
 

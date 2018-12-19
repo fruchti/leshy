@@ -118,13 +118,13 @@ void TIM14_IRQHandler(void)
     if(TIM14->SR & TIM_SR_UIF)
     {
         uint8_t segments = Display_Segments[currentdigit];
-        const int testtime = 20;
-        const int testdelay = 20;
-        if(testcounter < 7 * testtime + testdelay)
+        if(testcounter < 7 * CONFIG_SEGMENT_TEST_TIME
+            + CONFIG_BUILD_DISPLAY_TIME)
         {
-            if(testcounter > testdelay)
+            if(testcounter > CONFIG_BUILD_DISPLAY_TIME)
             {
-                segments = 1 << ((testcounter - testdelay) / testtime);
+                segments = 1 << ((testcounter - CONFIG_BUILD_DISPLAY_TIME)
+                    / CONFIG_SEGMENT_TEST_TIME);
             }
             else
             {

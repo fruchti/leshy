@@ -6,6 +6,7 @@ projects:
 
 - Charlieplexed 3-digit 7-segment display
 - Rotary encoder input
+- Non-volatile storage in the controller's flash (with wear levelling)
 - (Very basic) PID controller
 
 ## Schematic
@@ -38,12 +39,15 @@ Some notes on the circuit:
   samples or any advanced features. The control parameters were set empirically
   and are still a matter of improvement. All calculations are done with `float`s
   for clarity, because performance is not critical here.
+- `nvs.c` helps keep the set temperature across power cycles by allowing storage
+  in the controller's flash memory. A custom section defined in the linker
+  script (`stm32f030f4_flash_15k_nvs_1k.ld`) is used completely for
+  wear levelling.
 - `config.h`: There are some basic temperature settings here and configuration
   for the timing behaviour of the display.
 
 ## Possible improvements
 
-- Store the  temperature setting across power cycles.
 - Have some sort of standby mode (with an external sensor).
 - Improve the control: Add some filtering, perhaps auto-tuning of the control
   parameters.

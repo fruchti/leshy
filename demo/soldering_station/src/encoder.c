@@ -17,6 +17,9 @@ void Encoder_Init(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOFEN;
 
+    // // PA13 is in AF mode by default
+    // GPIOA->MODER &= ~(3 << (PIN_ENC_P << 1));
+    // GPIOA->PUPDR |= (1 << (PIN_ENC_P << 1));
     GPIOF->PUPDR |= (1 << (PIN_ENC_A << 1)) | (1 << (PIN_ENC_B << 1));
 }
 

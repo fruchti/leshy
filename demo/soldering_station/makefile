@@ -12,6 +12,7 @@ CUBE_DEVICE = STM32F0xx
 H_DEVICE = STM32F030x6
 STARTUP_SOURCE_DIR = $(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Source/Templates/gcc
 STARTUP_SOURCES = $(STARTUP_SOURCE_DIR)/startup_stm32f030x6.s
+LD_SCRIPT = $(COMMON_DIR)/ld/stm32f030f4_flash_15k_nvs_1k.ld
 
 ifeq ($(DEBUG),yes)
 DEBUG_FLAGS = -DDEBUG -g3
@@ -22,9 +23,8 @@ CFLAGS = -mcpu=cortex-m0 -mlittle-endian -mthumb -mthumb-interwork \
 		 -ffunction-sections -fdata-sections --specs nano.specs -mlong-calls \
 		 -Wall -Xlinker --gc-sections -I$(CUBE_DIR)/Drivers/CMSIS/Include \
 		 -I$(CUBE_DIR)/Drivers/CMSIS/Device/ST/$(CUBE_DEVICE)/Include \
-		 -D$(H_DEVICE) -T$(COMMON_DIR)/ld/stm32f030f4_flash.ld \
-		 -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map -std=c99 \
-		 $(addprefix -I,$(SOURCE_DIRS)) $(DEBUG_FLAGS)
+		 -D$(H_DEVICE) -T$(LD_SCRIPT) -Wl,-Map=$(BUILD_DIR)/$(PROJECT).map \
+		 -std=c99 $(addprefix -I,$(SOURCE_DIRS)) $(DEBUG_FLAGS)
 
 RM = rm -f
 CC = arm-none-eabi-gcc

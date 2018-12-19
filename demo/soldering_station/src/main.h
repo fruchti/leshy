@@ -9,6 +9,7 @@
 #include "encoder.h"
 #include "pid.h"
 #include "config.h"
+#include "nvs.h"
 
 int main(void);
 
