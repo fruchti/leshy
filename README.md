@@ -1,7 +1,7 @@
 # leshy
 
 ![PCB render](./kicad/board.png)
-![Schematic](./kicad/schematic.svg)
+[![Schematic](./kicad/schematic.svg)](./kicad/schematic.pdf)
 
 This is a small breakout board for the STM32F030F4P6 microcontroller,
 containing:
