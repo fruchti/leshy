@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "stm32f030x6.h"
+#include "stm32f0xx.h"
 
 #include "pinning.h"
 #include "buildid.h"

@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "stm32f030x6.h"
+#include "stm32f0xx.h"
 
 void SystemInit(void)
 {

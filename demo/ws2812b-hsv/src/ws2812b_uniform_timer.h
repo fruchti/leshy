@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "stm32f030x6.h"
+#include "stm32f0xx.h"
 #include "pinning.h"
 
 #define WS2812B_INVERT_DO                       0
