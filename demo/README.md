@@ -5,15 +5,16 @@ contains the necessary makefile for building and flashing, so no IDE has to be
 installed in order to get started. However, the makefile is currently only
 tested on linux.
 
-| Folder              | Example                                                                                                                                                     |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `blink`             | Classic minimal LED blinking example. Implemented with a timer update interrupt                                                                             |
-| `debug-print`       | Demonstrates printing messages via semihosting while debugging                                                                                              |
-| `FreeRTOS`          | Simple FreeRTOS example with tasks blinking an LED, measuring time and transmitting via semihosting.                                                        |
-| `sd`                | Uses FatFs to log the internal temperature sensor's output to a CSV file on the SD card                                                                     |
-| `soldering_station` | Basic controller for Hakko 907 soldering irons. Includes encoder input, charlieplexed 7-segment driver, control loop, and settings storage in flash memory. |
-| `ws2812b-hsv`       | Set H, S, V via three potentiometers and light up a WS2812B strip uniformly.                                                                                |
-| `ws2812b-spi`       | Drives a WS2812B LED strip with the SPI peripheral and DMA                                                                                                  |
+| Folder              | Example                                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `blink`             | Classic minimal LED blinking example. Implemented with a timer update interrupt                                                                            |
+| `debug-print`       | Demonstrates printing messages via semihosting while debugging                                                                                             |
+| `FreeRTOS`          | Simple FreeRTOS example with tasks blinking an LED, measuring time and transmitting via semihosting                                                        |
+| `hd44780`           | Basic driver for HD44780-compatible character LC displays                                                                                                  |
+| `sd`                | Uses FatFs to log the internal temperature sensor's output to a CSV file on the SD card                                                                    |
+| `soldering_station` | Basic controller for Hakko 907 soldering irons. Includes encoder input, charlieplexed 7-segment driver, control loop, and settings storage in flash memory |
+| `ws2812b-hsv`       | Sets H, S, V via three potentiometers and light up a WS2812B strip uniformly                                                                               |
+| `ws2812b-spi`       | Drives a WS2812B LED strip with the SPI peripheral and DMA                                                                                                 |
 
 The folder `common` contains libraries such as FreeRTOS, linker scripts and
 other supplementary files.
