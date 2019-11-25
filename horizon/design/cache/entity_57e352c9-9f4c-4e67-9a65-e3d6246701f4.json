@@ -1,0 +1,19 @@
+{
+    "gates": {
+        "bca5e6bc-c446-41e4-ba12-696f1cba134a": {
+            "name": "Main",
+            "suffix": "",
+            "swap_group": 0,
+            "unit": "1974f3a8-946c-43aa-9918-51494c00fe05"
+        }
+    },
+    "manufacturer": "",
+    "name": "microSD socket (with card detect switch)",
+    "prefix": "J",
+    "tags": [
+        "connector",
+        "memory_card"
+    ],
+    "type": "entity",
+    "uuid": "57e352c9-9f4c-4e67-9a65-e3d6246701f4"
+}

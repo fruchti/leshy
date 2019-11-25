@@ -1,0 +1,75 @@
+{
+    "manufacturer": "",
+    "name": "microSD Socket (with card detect switch)",
+    "pins": {
+        "2cbbdec8-a650-409f-8ce7-75f8af94e53f": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "VSS",
+            "swap_group": 0
+        },
+        "4dc68c66-931a-47e7-8016-7837ce9c3bee": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "DAT2",
+            "swap_group": 0
+        },
+        "52c9763c-c3bd-4e9e-a9fd-9949c46a1ad2": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "CLK",
+            "swap_group": 0
+        },
+        "60135d4c-c1be-4f1b-80ac-584ada6bd317": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "VDD",
+            "swap_group": 0
+        },
+        "95b42186-605b-4749-8f9b-a0812976817a": {
+            "direction": "bidirectional",
+            "names": [
+                "CD",
+                "nCS"
+            ],
+            "primary_name": "DAT3",
+            "swap_group": 0
+        },
+        "9d63bde5-0ce7-48be-97ec-ca267e558867": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "DAT1",
+            "swap_group": 0
+        },
+        "a7ae3913-9756-44a2-9441-0d9f2f5401de": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "SW",
+            "swap_group": 0
+        },
+        "b49cbc79-bc0e-4d21-94b4-8dd1d85a0407": {
+            "direction": "bidirectional",
+            "names": [
+                "DI"
+            ],
+            "primary_name": "CMD",
+            "swap_group": 0
+        },
+        "db8b8942-414c-47f1-8ba9-87421209931d": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "CASE",
+            "swap_group": 0
+        },
+        "e2490c6b-037c-48e9-8473-10646d49c7b1": {
+            "direction": "bidirectional",
+            "names": [
+                "DO"
+            ],
+            "primary_name": "DAT0",
+            "swap_group": 0
+        }
+    },
+    "type": "unit",
+    "uuid": "1974f3a8-946c-43aa-9918-51494c00fe05"
+}

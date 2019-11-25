@@ -1,0 +1,9 @@
+{
+    "default_via": "00000000-0000-0000-0000-000000000000",
+    "name": "leshy Pool",
+    "pools_included": [
+        "6d752bc3-29b3-45df-8cf2-1e3aacefbcc6"
+    ],
+    "type": "pool",
+    "uuid": "f02a44fc-d03d-43ef-a7aa-329715e80b21"
+}

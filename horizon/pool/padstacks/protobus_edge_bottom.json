@@ -1,0 +1,444 @@
+{
+    "holes": {
+        "be1058d6-3f5a-4356-b9a9-182f1c01d325": {
+            "diameter": 400000,
+            "length": 500000,
+            "parameter_class": "hole",
+            "placement": {
+                "angle": 0,
+                "mirror": false,
+                "shift": [
+                    0,
+                    0
+                ]
+            },
+            "plated": false,
+            "shape": "round"
+        }
+    },
+    "name": "Prototyping Bus Pad (NPTH, edge bottom)",
+    "padstack_type": "mechanical",
+    "parameter_program": "get-parameter [ hole_diameter ]\nset-hole [ hole round ]\n\n\n\n0mm\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 /\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\ndup\n1000 * 1732 /\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\ndup\n1000 * 1732 / chs\n\n0mm\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / chs\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nchs dup\n1000 * 1732 /\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nchs dup chs\n1000 * 1732 /\n\nset-polygon-vertices [ pad_top 6 ]\n\n\n\n0mm\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 /\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\ndup\n1000 * 1732 /\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\ndup\n1000 * 1732 / chs\n\n0mm\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 /\nget-parameter [ solder_mask_expansion ] + chs\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\nchs dup\n1000 * 1732 /\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\nchs dup chs\n1000 * 1732 /\n\nset-polygon-vertices [ mask_top 6 ]\n\n\n\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 /\n0mm\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + +\n577 * 1000 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 / + chs\nget-parameter [ pad_width ] 2 / \n\nget-parameter [ pad_height ] chs\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\nget-parameter [ pad_width ] 557 * 2000 / -\nget-parameter [ pad_width ] 2 /\n\nget-parameter [ pad_height ] chs\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\n0mm\n\nget-parameter [ pad_height ] chs\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\nget-parameter [ pad_width ] 557 * 2000 / -\nget-parameter [ pad_width ] 2 / chs\n\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + +\n577 * 1000 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 / + chs\nget-parameter [ pad_width ] 2 / chs\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\n1000 * 1732 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\n1000 * 1732 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\n\nset-polygon-vertices [ pad_bottom 10 ]\n\n\n\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 /\nget-parameter [ solder_mask_expansion ] +\n0mm\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\n1000 * 1732 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\n1000 * 1732 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ solder_mask_expansion ] +\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + +\n577 * 1000 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 / + chs\nget-parameter [ pad_width ] 2 /\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ pad_height ] chs\nget-parameter [ solder_mask_expansion ] 1000 / 1732 * -\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\nget-parameter [ pad_width ] 557 * 2000 / -\nget-parameter [ pad_width ] 2 /\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ pad_height ] chs\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\nget-parameter [ solder_mask_expansion ]\n2000 * 1732 / -\n0mm\n\nget-parameter [ pad_height ] chs\nget-parameter [ solder_mask_expansion ] 1000 / 1732 * -\nget-parameter [ hole_diameter ] get-parameter [ hole_annular_ring ] 2 * +\n1000 * 1732 / +\nget-parameter [ pad_width ] 557 * 2000 / -\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ solder_mask_expansion ] -\n\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ solder_mask_expansion ] +\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + +\n577 * 1000 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] +\n1000 * 1732 / + chs\nget-parameter [ pad_width ] 2 / chs\nget-parameter [ solder_mask_expansion ] -\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\nget-parameter [ solder_mask_expansion ] -\n1000 * 1732 /\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\nget-parameter [ solder_mask_expansion ] -\n\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\nget-parameter [ solder_mask_expansion ] -\n1000 * 1732 / chs\nget-parameter [ hole_diameter ] 2 / get-parameter [ hole_annular_ring ] + chs\nget-parameter [ solder_mask_expansion ] -\n\n\nset-polygon-vertices [ mask_bottom 10 ]\n\n\n",
+    "parameter_set": {
+        "hole_annular_ring": 100000,
+        "hole_diameter": 400000,
+        "pad_height": 2340000,
+        "pad_width": 400000,
+        "solder_mask_expansion": 100000
+    },
+    "parameters_required": [],
+    "polygons": {
+        "20460aa5-1c2d-4447-bf39-edad8d154258": {
+            "layer": -110,
+            "parameter_class": "mask_bottom",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        446420,
+                        0
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        230946,
+                        400000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -230946,
+                        400000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -288610,
+                        300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -2278180,
+                        300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -2109053,
+                        0
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -2278180,
+                        -300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -288610,
+                        -300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -230946,
+                        -400000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        230946,
+                        -400000
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "6b52c401-7061-4b60-a144-0ee4d8615564": {
+            "layer": 10,
+            "parameter_class": "mask_top",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        446420
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        400000,
+                        230946
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        400000,
+                        -230946
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -446420
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -400000,
+                        -230946
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -400000,
+                        230946
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "716012e5-06c9-4dc1-ab16-32d0f0d7720c": {
+            "layer": -100,
+            "parameter_class": "pad_bottom",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        346420,
+                        0
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        173210,
+                        300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -173210,
+                        300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -230910,
+                        200000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -2104980,
+                        200000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -1993580,
+                        0
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -2104980,
+                        -200000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -230910,
+                        -200000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -173210,
+                        -300000
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        173210,
+                        -300000
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "ae20984e-cd7b-449d-84ac-94fcf00a55e3": {
+            "layer": 0,
+            "parameter_class": "pad_top",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        346420
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        300000,
+                        173210
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        300000,
+                        -173210
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -346420
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -300000,
+                        -173210
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -300000,
+                        173210
+                    ],
+                    "type": "line"
+                }
+            ]
+        }
+    },
+    "shapes": {},
+    "type": "padstack",
+    "uuid": "e15e0a70-ab78-4603-ab52-340d039e32da",
+    "well_known_name": ""
+}

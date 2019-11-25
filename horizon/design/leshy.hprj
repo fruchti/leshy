@@ -1,0 +1,17 @@
+{
+    "blocks": [
+        {
+            "block_filename": "top_block.json",
+            "is_top": true,
+            "schematic_filename": "top_sch.json"
+        }
+    ],
+    "board_filename": "board.json",
+    "name": "leshy",
+    "pool_cache_directory": "cache",
+    "pool_uuid": "f02a44fc-d03d-43ef-a7aa-329715e80b21",
+    "title": "leshy Design",
+    "type": "project",
+    "uuid": "768a1c60-806e-4fee-af2e-31ee9b2a3377",
+    "vias_directory": "vias"
+}

@@ -1,0 +1,346 @@
+{
+    "holes": {
+        "be1058d6-3f5a-4356-b9a9-182f1c01d325": {
+            "diameter": 1000000,
+            "length": 500000,
+            "parameter_class": "hole",
+            "placement": {
+                "angle": 0,
+                "mirror": false,
+                "shift": [
+                    0,
+                    0
+                ]
+            },
+            "plated": true,
+            "shape": "round"
+        }
+    },
+    "name": "TH round (hexagonal pad)",
+    "padstack_type": "through",
+    "parameter_program": "get-parameter [ hole_diameter ]\nset-hole [ hole round ]\n\n\n\n0mm\nget-parameter [ pad_diameter ]\n1000 * 1732 /\n\nget-parameter [ pad_diameter ] 2 /\ndup\n1000 * 1732 /\n\nget-parameter [ pad_diameter ] 2 /\ndup\n1000 * 1732 / chs\n\n0mm\nget-parameter [ pad_diameter ]\n1000 * 1732 / chs\n\nget-parameter [ pad_diameter ] 2 /\nchs dup\n1000 * 1732 /\n\nget-parameter [ pad_diameter ] 2 /\nchs dup chs\n1000 * 1732 /\n\nset-polygon-vertices [ pad 6 ]\n\n\n\n0mm\nget-parameter [ pad_diameter ]\n1000 * 1732 /\nget-parameter [ solder_mask_expansion ] +\n\nget-parameter [ pad_diameter ] 2 /\nget-parameter [ solder_mask_expansion ] +\ndup\n1000 * 1732 /\n\nget-parameter [ pad_diameter ] 2 /\nget-parameter [ solder_mask_expansion ] +\ndup\n1000 * 1732 / chs\n\n0mm\nget-parameter [ pad_diameter ]\n1000 * 1732 /\nget-parameter [ solder_mask_expansion ] + chs\n\nget-parameter [ pad_diameter ] 2 /\nget-parameter [ solder_mask_expansion ] +\nchs dup\n1000 * 1732 /\n\nget-parameter [ pad_diameter ] 2 /\nget-parameter [ solder_mask_expansion ] +\nchs dup chs\n1000 * 1732 /\n\nset-polygon-vertices [ mask 6 ]\n",
+    "parameter_set": {
+        "hole_diameter": 1000000,
+        "pad_diameter": 1700000,
+        "solder_mask_expansion": 100000
+    },
+    "parameters_required": [],
+    "polygons": {
+        "20460aa5-1c2d-4447-bf39-edad8d154258": {
+            "layer": -110,
+            "parameter_class": "mask",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        1081524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        950000,
+                        548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        950000,
+                        -548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -1081524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -950000,
+                        -548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -950000,
+                        548498
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "6b52c401-7061-4b60-a144-0ee4d8615564": {
+            "layer": 10,
+            "parameter_class": "mask",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        1081524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        950000,
+                        548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        950000,
+                        -548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -1081524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -950000,
+                        -548498
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -950000,
+                        548498
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "716012e5-06c9-4dc1-ab16-32d0f0d7720c": {
+            "layer": -100,
+            "parameter_class": "pad",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        981524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        850000,
+                        490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        850000,
+                        -490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -981524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -850000,
+                        -490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -850000,
+                        490762
+                    ],
+                    "type": "line"
+                }
+            ]
+        },
+        "ae20984e-cd7b-449d-84ac-94fcf00a55e3": {
+            "layer": 0,
+            "parameter_class": "pad",
+            "vertices": [
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        981524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        850000,
+                        490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        850000,
+                        -490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        0,
+                        -981524
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -850000,
+                        -490762
+                    ],
+                    "type": "line"
+                },
+                {
+                    "arc_center": [
+                        0,
+                        0
+                    ],
+                    "arc_reverse": false,
+                    "position": [
+                        -850000,
+                        490762
+                    ],
+                    "type": "line"
+                }
+            ]
+        }
+    },
+    "shapes": {},
+    "type": "padstack",
+    "uuid": "543580db-1fc5-43d2-877f-06b2b206a641",
+    "well_known_name": ""
+}

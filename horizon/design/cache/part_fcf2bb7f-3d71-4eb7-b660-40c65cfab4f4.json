@@ -1,0 +1,52 @@
+{
+    "MPN": [
+        false,
+        "LM1117MPX-3.3"
+    ],
+    "datasheet": [
+        false,
+        "http://www.ti.com/lit/gpn/lm1117"
+    ],
+    "description": [
+        false,
+        "3.3 V, 800 mA low-dropout linear regulator with internal current limit"
+    ],
+    "entity": "1d0055e8-b654-4bb9-b3e2-5ad87079ecca",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Texas Instruments"
+    ],
+    "model": "80bb6d30-caae-4c2b-815f-fd1a6af47d49",
+    "package": "469dc428-bc14-407f-8222-0d30942ea760",
+    "pad_map": {
+        "6cd7622a-9bb6-4f07-92d9-8347356b8e41": {
+            "gate": "8b4c20d8-37fd-40a5-8239-db8803c0baa0",
+            "pin": "559d5e91-2169-486b-9ece-8db9867957dd"
+        },
+        "8617f617-99c7-4709-8143-3314d851a1e3": {
+            "gate": "8b4c20d8-37fd-40a5-8239-db8803c0baa0",
+            "pin": "20f0495c-5e6e-4975-b440-1399ca09d3c3"
+        },
+        "b15eff60-0d63-470e-a292-2f0d47b93c14": {
+            "gate": "8b4c20d8-37fd-40a5-8239-db8803c0baa0",
+            "pin": "304699c2-7433-4b03-ad2c-c8df631dd06f"
+        },
+        "f4a49a30-8b27-4e50-ae39-54d7d731bb7c": {
+            "gate": "8b4c20d8-37fd-40a5-8239-db8803c0baa0",
+            "pin": "559d5e91-2169-486b-9ece-8db9867957dd"
+        }
+    },
+    "parametric": {},
+    "tags": [
+        "ldo",
+        "smd"
+    ],
+    "type": "part",
+    "uuid": "fcf2bb7f-3d71-4eb7-b660-40c65cfab4f4",
+    "value": [
+        false,
+        "1117-3.3"
+    ]
+}

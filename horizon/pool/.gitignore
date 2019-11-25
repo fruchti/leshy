@@ -1,0 +1,3 @@
+*.db
+tmp/*.json
+3d_models/local

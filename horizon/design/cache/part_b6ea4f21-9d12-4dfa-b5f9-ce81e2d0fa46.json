@@ -1,0 +1,89 @@
+{
+    "MPN": [
+        false,
+        "MR01A-01211"
+    ],
+    "datasheet": [
+        false,
+        "http://www.asia-atom.com/downloadsfront.do?method=picker&flag=all&id=4a06ad78-73c0-465c-ae30-08c4c401e03d&fileId=49&isDownloadPermissions=true&memstate=/members_login.html"
+    ],
+    "description": [
+        false,
+        "microSD socket with card detect switch"
+    ],
+    "entity": "57e352c9-9f4c-4e67-9a65-e3d6246701f4",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Shenzen Atom Technology"
+    ],
+    "model": "00000000-0000-0000-0000-000000000000",
+    "package": "da14a5bb-e334-4707-a4c5-2499dcc29d81",
+    "pad_map": {
+        "0259658f-8343-4594-8f2f-07da88194701": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "2cbbdec8-a650-409f-8ce7-75f8af94e53f"
+        },
+        "0c55bf7b-f09d-4abe-b03a-10c2628ec221": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "db8b8942-414c-47f1-8ba9-87421209931d"
+        },
+        "0db606df-7204-45b0-a586-144925bffbbd": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "b49cbc79-bc0e-4d21-94b4-8dd1d85a0407"
+        },
+        "38a44ec8-1682-4b6c-9d8e-68dfb9bb0ddd": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "db8b8942-414c-47f1-8ba9-87421209931d"
+        },
+        "3edca0f2-a383-406f-99a6-4bbb444fe9b2": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "95b42186-605b-4749-8f9b-a0812976817a"
+        },
+        "48e374e7-14b7-4cfc-9b4a-9fa8f811676b": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "a7ae3913-9756-44a2-9441-0d9f2f5401de"
+        },
+        "65aa7534-2738-4bcb-a17d-3ff5d14386e3": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "52c9763c-c3bd-4e9e-a9fd-9949c46a1ad2"
+        },
+        "82a831ad-1cbb-4582-80d3-e88858c2e081": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "db8b8942-414c-47f1-8ba9-87421209931d"
+        },
+        "a57df55c-c68f-44d2-ab3f-c847fa2d657f": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "9d63bde5-0ce7-48be-97ec-ca267e558867"
+        },
+        "ae0b1a37-657c-41ed-bcd1-843a081157c9": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "60135d4c-c1be-4f1b-80ac-584ada6bd317"
+        },
+        "c34e28df-ddc2-4183-93e0-c51cbd2d0f0e": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "4dc68c66-931a-47e7-8016-7837ce9c3bee"
+        },
+        "eff8c0d7-7e3e-4265-bf50-e295e9ba6c10": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "db8b8942-414c-47f1-8ba9-87421209931d"
+        },
+        "f31fb164-102b-4449-9f18-003eb65698dd": {
+            "gate": "bca5e6bc-c446-41e4-ba12-696f1cba134a",
+            "pin": "e2490c6b-037c-48e9-8473-10646d49c7b1"
+        }
+    },
+    "parametric": {},
+    "tags": [
+        "connector",
+        "memory_card",
+        "smd"
+    ],
+    "type": "part",
+    "uuid": "b6ea4f21-9d12-4dfa-b5f9-ce81e2d0fa46",
+    "value": [
+        false,
+        ""
+    ]
+}
