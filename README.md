@@ -21,23 +21,6 @@ installed in order to get started. However, the makefile is currently only
 tested on linux.
 
 
-### Building, dependencies
-
-The build requires `arm-none-eabi-binutils` and the
-[STM32CubeF0](http://www.st.com/en/embedded-software/stm32cubef0.html) firmware
-package for the necessary CMSIS header files. Its location must be set in
-`demo/config.mk`. After editing this file, please run
-
-```
-$ git update-index --skip-worktree demo/config.mk
-```
-
-if you plan on contributing to this repository. This command tells git to ignore
-your changes to the file. Thus, the remote repository will always have the
-default configuration file and there will no conflicts for everyone else pulling
-the newest commits.
-
-
 ### Flashing and debugging
 
 The makefile currently supports two methods of flashing the controller: Either
