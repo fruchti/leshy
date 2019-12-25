@@ -1,16 +1,16 @@
 # leshy
 
-![PCB render](./kicad/board.png)
-[![Schematic](./kicad/schematic.svg)](./kicad/schematic.pdf)
+![PCB render](./layout.png)
+[![Schematic](./schematic.png)](./schematic.pdf)
 
 This is a small breakout board for the STM32F030F4P6 microcontroller,
 containing:
 
- - A LDO, alternatively a 1117-3.3 or a MCP1700-3302 (or compatible)
+ - An LDO, alternatively a 1117-3.3 or a MCP1700-3302 (or compatible)
  - 6 LEDs, one as a power LED, the other 5 controllable by the controller
- - A reset and a freely available pushbutton
- - A micro-SD slot
- - A 0.05 inch grid prototyping field
+ - Two pushbuttons, one pre-connected to reset
+ - A micro-SD slot with a MOSFET for turning its power off
+ - A large prototyping area
 
 
 ## Demo projects
