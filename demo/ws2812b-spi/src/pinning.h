@@ -1,6 +1,5 @@
-#ifndef PINNING_H_
-#define PINNING_H_
+#pragma once
 
 #define PIN_LED_1               1   // PA1  - Status LED
 
-#endif
+

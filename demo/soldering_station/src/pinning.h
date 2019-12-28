@@ -1,5 +1,4 @@
-#ifndef PINNING_H_
-#define PINNING_H_
+#pragma once
 
 // Port A
 #define PIN_DISP_1_SEG_A        0   // PA0  - Decimal 1 segment a
@@ -44,4 +43,4 @@
 #define PIN_ENC_A               0   // PF0  - Encoder phase A
 #define PIN_ENC_B               1   // PF1  - Encoder phase B
 
-#endif
+

@@ -1,5 +1,4 @@
-#ifndef WS2812B_SPI_H
-#define WS2812B_SPI_H
+#pragma once
 
 #include "stm32f030x6.h"
 #include "pinning.h"
@@ -28,4 +27,4 @@ extern volatile LED_Color_t LED_Buffer[LED_COUNT];
 void LED_Init(void);
 void LED_Refresh(void);
 
-#endif
+

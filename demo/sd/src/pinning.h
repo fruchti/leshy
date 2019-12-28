@@ -1,5 +1,4 @@
-#ifndef PINNING_H_
-#define PINNING_H_
+#pragma once
 
 #define PIN_BUTTON              0   // PA0  - Push button
 #define PIN_LED_1               1   // PA1  - Status LED
@@ -8,4 +7,4 @@
 #define PIN_LED_4               9   // PA9  - Status LED
 #define PIN_LED_5               10  // PA10 - Status LED
 
-#endif
+

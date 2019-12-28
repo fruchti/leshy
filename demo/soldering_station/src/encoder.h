@@ -1,5 +1,4 @@
-#ifndef ENCODER_H_
-#define ENCODER_H_
+#pragma once
 
 #include "stm32f030x6.h"
 
@@ -12,4 +11,4 @@ void Encoder_Init(void);
 void Encoder_Poll(void);
 int Encoder_Read(void);
 
-#endif
+

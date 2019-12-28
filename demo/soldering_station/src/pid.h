@@ -1,5 +1,4 @@
-#ifndef PID_H_
-#define PID_H_
+#pragma once
 
 #include "stm32f030x6.h"
 
@@ -26,4 +25,3 @@ void PID_Init(void);
 extern volatile unsigned int PID_CurrentTemperature;
 extern unsigned int PID_SetTemperature;
 
-#endif

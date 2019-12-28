@@ -1,5 +1,4 @@
-#ifndef DEBUG_H_
-#define DEBUG_H_
+#pragma once
 
 #include <stdlib.h>
 #include <string.h>
@@ -14,4 +13,4 @@ void Debug_PutChar(char c);
 #define Debug_PutChar(x) do{}while(0);
 #endif
 
-#endif
+

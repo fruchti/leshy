@@ -1,5 +1,4 @@
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#pragma once
 
 #define CONFIG_MAX_TEMP             450     // °C
 #define CONFIG_MIN_TEMP             50      // °C
@@ -11,4 +10,3 @@
 #define CONFIG_SEGMENT_TEST_TIME    20      // ms
 #define CONFIG_UPDATE_INTERVAL      200     // ms
 
-#endif

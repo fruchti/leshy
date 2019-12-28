@@ -1,5 +1,4 @@
-#ifndef MAIN_H_
-#define MAIN_H_
+#pragma once
 
 #include <stdbool.h>
 #include "stm32f030x6.h"
@@ -13,4 +12,4 @@
 
 int main(void);
 
-#endif
+

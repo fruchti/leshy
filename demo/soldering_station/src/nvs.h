@@ -1,5 +1,4 @@
-#ifndef NVS_H_
-#define NVS_H_
+#pragma once
 
 #include <stdbool.h>
 
@@ -20,4 +19,4 @@ bool NVS_Load(void);
 // Stores the current contents of NVS_Data to flash
 void NVS_Save(void);
 
-#endif
+

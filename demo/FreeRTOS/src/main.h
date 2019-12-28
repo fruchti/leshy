@@ -1,5 +1,4 @@
-#ifndef MAIN_H_
-#define MAIN_H_
+#pragma once
 
 #include <stdbool.h>
 #include "stm32f030x6.h"
@@ -17,4 +16,4 @@ static void BlinkTask(void *param);
 static void ButtonTask(void *param);
 static void DebugTask(void *param);
 
-#endif
+

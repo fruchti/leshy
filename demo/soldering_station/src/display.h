@@ -1,5 +1,4 @@
-#ifndef DISPLAY_H_
-#define DISPLAY_H_
+#pragma once
 
 #include <stdbool.h>
 
@@ -85,4 +84,4 @@ void Display_Init(void);
 void Display_Number(int value);
 void Display_ShowSegments(uint8_t digit1, uint8_t digit2, uint8_t digit3);
 
-#endif
+
