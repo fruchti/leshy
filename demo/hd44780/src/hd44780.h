@@ -3,7 +3,7 @@
 #include "stm32f030x6.h"
 
 #include "pinning.h"
- 
+
 #define LCD_DELAY_BOOT          15000
 #define LCD_DELAY_ENABLE        20
 #define LCD_DELAY_WRITE_DATA    46

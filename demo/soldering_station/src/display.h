@@ -8,17 +8,17 @@
 #include "pinning.h"
 #include "buildid.h"
 
-#define DISPLAY_DIGITS      3
+#define DISPLAY_DIGITS          3
 // #define DISPLAY_CC   // Common cathode mode
 
-#define DISPLAY_SEG_A       1
-#define DISPLAY_SEG_B       2
-#define DISPLAY_SEG_C       4
-#define DISPLAY_SEG_D       8
-#define DISPLAY_SEG_E       16
-#define DISPLAY_SEG_F       32
-#define DISPLAY_SEG_G       64
-#define DISPLAY_DP          128
+#define DISPLAY_SEG_A           1
+#define DISPLAY_SEG_B           2
+#define DISPLAY_SEG_C           4
+#define DISPLAY_SEG_D           8
+#define DISPLAY_SEG_E           16
+#define DISPLAY_SEG_F           32
+#define DISPLAY_SEG_G           64
+#define DISPLAY_DP              128
 
 #define DISPLAY_SEG_ODR_MASK    ((1 << PIN_DISP_1_SEG_A) |\
                                 (1 << PIN_DISP_1_SEG_B) |\

@@ -5,8 +5,8 @@
 
 #include "pinning.h"
 
-#define ENCODER_RESOLUTION  2
-#define ENCODER_ACCEL       20
+#define ENCODER_RESOLUTION      2
+#define ENCODER_ACCEL           20
 
 void Encoder_Init(void);
 void Encoder_Poll(void);

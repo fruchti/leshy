@@ -6,10 +6,10 @@
 #include "stm32f0xx.h"
 #include "pinning.h"
 
-#define WS2812B_INVERT_DO                       0
+#define WS2812B_INVERT_DO       0
 
-#define WS2812B_ZERO_LENGTH                     19
-#define WS2812B_ONE_LENGTH                      38
+#define WS2812B_ZERO_LENGTH     19
+#define WS2812B_ONE_LENGTH      38
 
 typedef struct
 {
