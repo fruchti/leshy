@@ -1,0 +1,10 @@
+--std=c99
+-Isrc
+-Ithird_party/core
+-Ithird_party/device
+-Ithird_party/fatfs-stm32
+-DDEBUG
+-DSTM32F030x6
+-D_DEFAULT_SOURCE
+-Wall
+-Wextra
