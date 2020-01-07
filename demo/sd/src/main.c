@@ -14,9 +14,9 @@ void LED_Init(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOFEN;
 
-    GPIOA->MODER |= (1 << (PIN_LED_1 << 1)) | (1 << (PIN_LED_2 << 1)) |\
-                    (1 << (PIN_LED_3 << 1)) | (1 << (PIN_LED_4 << 1)) |\
-                    (1 << (PIN_LED_5 << 1));
+    GPIOA->MODER |= (1 << (PIN_LED_1 << 1)) | (1 << (PIN_LED_2 << 1))
+        | (1 << (PIN_LED_3 << 1)) | (1 << (PIN_LED_4 << 1))
+        | (1 << (PIN_LED_5 << 1));
 }
 
 void StartLogging(void)
@@ -29,8 +29,9 @@ void StartLogging(void)
         if(rc == FR_OK)
         {
             f_printf(&logfile,
-                    "This file was written by a simple STM32F0 SD card example.\n"
-                    "More specifically, by build number %d, created on %d.\n"
+                    "This file was written by a simple leshy SD card example. "
+                    "More specifically, by build number %d, created on %d for "
+                    "hardware revision " LESHY_HARDWARE_REVISION ".\n"
                     "The example provides a simple temperature logger:\n"
                     "Time (ms), Temperature (°C)\n", BUILD_NUMBER, BUILD_DATE);
 
