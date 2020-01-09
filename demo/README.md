@@ -16,20 +16,20 @@ tested on linux.
 | `ws2812b-hsv`       | Sets H, S, V via three potentiometers and light up a WS2812B strip uniformly                                                                               |
 | `ws2812b-spi`       | Drives a WS2812B LED strip with the SPI peripheral and DMA                                                                                                 |
 
-The folder `common` contains libraries such as FreeRTOS, linker scripts and
-other supplementary files.
+## Flashing
 
+The makefile supports flashing the controller via
+[texane's st-link](https://github.com/texane/stlink). Invoke
 
-## Flashing and debugging
+```
+$ make program
+```
 
-The makefile currently supports two methods of flashing the controller: Either
-[texane's st-link](https://github.com/texane/stlink) or OpenOCD can be used.
-OpenOCD also allows debugging, so if the makefile detects a running OpenOCD
-instance, it will automatically upload the firmware via OpenOCD. If there's
-none running, it will fall back to `st-flash`.
+to build a binary and flash it at `0x8000000`.
 
-Each project directory includes a OpenOCD script, so you just have to start
-OpenOCD like:
+# Debugging
+
+Each project directory includes a OpenOCD script, so you can start OpenOCD like:
 
 ```
 $ openocd -f flash.cfg
@@ -38,11 +38,3 @@ $ openocd -f flash.cfg
 As a matter of debugging, only text messages via semihosting are implemented so
 far. These are displayed in OpenOCD. See the `debug-print` example for details.
 Apart from that, of course `arm-none-eabi-gdb` or a complete IDE can be used.
-
-
-## Using the projects as templates
-
-If you want to use the demo projects as a starting point for your own
-applications, you will have to adapt the makefile slightly. The projects
-reference `config.mk` and some files in the folder `common`. Move the necessary
-files to the project directory and adjust the paths and you're good to go!
