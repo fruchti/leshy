@@ -3,9 +3,9 @@
 This directory contains some example code snippets for a quick start. Each
 contains the necessary makefile for building and flashing, so no IDE has to be
 installed in order to get started. However, the makefile is currently only
-tested on linux.
+tested on Linux.
 
-| Folder              | Example                                                                                                                                                    |
+| Folder              | Example description                                                                                                                                        |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `blink`             | Classic minimal LED blinking example. Implemented with a timer update interrupt                                                                            |
 | `debug-print`       | Demonstrates printing messages via semihosting while debugging                                                                                             |
@@ -15,6 +15,21 @@ tested on linux.
 | `soldering_station` | Basic controller for Hakko 907 soldering irons. Includes encoder input, charlieplexed 7-segment driver, control loop, and settings storage in flash memory |
 | `ws2812b-hsv`       | Sets H, S, V via three potentiometers and light up a WS2812B strip uniformly                                                                               |
 | `ws2812b-spi`       | Drives a WS2812B LED strip with the SPI peripheral and DMA                                                                                                 |
+
+If you want to use one of the demo projects as a starting point, here is a small
+table with the MCU peripherals in use and external components the project
+contains driver code for:
+
+| Folder              | Microcontroller peripherals                                  | External components                               | Third-party libraries                              |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------- | -------------------------------------------------- |
+| `blink`             | `TIM`                                                        |                                                   |                                                    |
+| `debug-print`       |                                                              |                                                   |                                                    |
+| `FreeRTOS`          | `SysTick`                                                    |                                                   | [FreeRTOS](https://freertos.org/)                  |
+| `hd44780`           |                                                              | HD44780-based display (4-bit mode)                |                                                    |
+| `sd`                | `ADC` (internal temperature sensor), `SPI`, `SysTick`, `TIM` | microSD card (SPI mode)                           | [FatFs](http://elm-chan.org/fsw/ff/00index_e.html) |
+| `soldering_station` | `ADC`, `FLASH` (non-volatile storage), `TIM`                 | 7-segment display (charlieplexed), rotary encoder |                                                    |
+| `ws2812b-hsv`       | `ADC`, `DMA`, `TIM`                                          | WS2812B LED strip (uniform colour)                |                                                    |
+| `ws2812b-spi`       | `DMA`, `SPI`, `TIM`                                          | WS2812B LED strip                                 |                                                    |
 
 ## Flashing
 
