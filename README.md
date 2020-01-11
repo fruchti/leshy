@@ -39,3 +39,22 @@ $ openocd -f flash.cfg
 As a matter of debugging, only text messages via semihosting are implemented so
 far. These are displayed in OpenOCD. See the `debug-print` example for details.
 Apart from that, of course `arm-none-eabi-gdb` or a complete IDE can be used.
+
+## Licence
+
+Everyting in this repository, including the demo projects is ISC licenced (see
+LICENCE_ISC.md for details), with the following exceptions:
+
+* Third-party libraries used within the demo projects and located in their
+  `third_party` subfolders, contain their own licence information.
+* Core and device header files, which are also located in the demo projects'
+  `third_party` subfolders, are supplied by ARM Limited and STMicroelectronics,
+  respecitvely. They also contain their own licence information.
+* For compatibility with the Horizon default pool, this project's pool (located
+  within `horizon/pool`) uses
+  [the same licence as the default pool](https://github.com/horizon-eda/horizon-pool/blob/master/LICENSE.md).
+* Horizon automatically copies pool items for caching to the
+  `horizon/design/cache` directory. Just being copies, these files also fall
+  under the terms of the
+  [Horizon Pool Licence](https://github.com/horizon-eda/horizon-pool/blob/master/LICENSE.md).
+
