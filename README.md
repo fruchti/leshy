@@ -1,6 +1,6 @@
 # leshy
 
-![PCB render](./layout.png)
+![PCB top and bottom](./board.jpg)
 [![Schematic](./schematic.png)](./schematic.pdf)
 
 This is a small breakout board for the STM32F030F4P6 microcontroller,
