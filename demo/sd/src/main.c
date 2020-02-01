@@ -14,13 +14,14 @@ void LED_Init(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOFEN;
 
-    GPIOA->MODER |= (1 << (PIN_LED_1 << 1)) | (1 << (PIN_LED_2 << 1))
-        | (1 << (PIN_LED_3 << 1)) | (1 << (PIN_LED_4 << 1))
-        | (1 << (PIN_LED_5 << 1));
+    GPIOA->MODER |= (1 << (PIN_LED_2 << 1)) | (1 << (PIN_LED_3 << 1))
+        | (1 << (PIN_LED_4 << 1))| (1 << (PIN_LED_5 << 1));
 }
 
-void StartLogging(void)
+static void StartLogging(void)
 {
+    SD_PowerOn();
+
     FRESULT rc;
     rc = f_mount(&FatFs, "", 1);
     if(rc == FR_OK)
@@ -36,8 +37,8 @@ void StartLogging(void)
                     "Time (ms), Temperature (°C)\n", BUILD_NUMBER, BUILD_DATE);
 
             // SD card is mounted and the log file open.
-            // Everything went OK, so LED 1 can be turned off
-            GPIOA->BRR |= (1 << PIN_LED_1);
+            // Everything went OK, so LED 3 can be turned off
+            GPIOA->BRR = (1 << PIN_LED_3);
 
             // Enable the timer
             TIM3->CR1 |= TIM_CR1_CEN;
@@ -49,20 +50,22 @@ void StartLogging(void)
     }
 }
 
-void StopLogging(void)
+static void StopLogging(void)
 {
     TIM3->CR1 &= ~TIM_CR1_CEN;
     f_sync(&logfile);
     f_close(&logfile);
-    GPIOA->BRR |= (1 << PIN_LED_2);
+    GPIOA->BRR = (1 << PIN_LED_2);
     logging = 0;
+
+    SD_PowerOff();
 }
 
 int main(void)
 {
     LED_Init();
-    // LED 1 should be lit up during the initialisation
-    GPIOA->BSRR |= (1 << PIN_LED_1);
+    // LED 3 should be lit up during the initialisation
+    GPIOA->BSRR = (1 << PIN_LED_3);
 
     // Enable button pull-up
     GPIOA->PUPDR |= (1 << (PIN_BUTTON << 1));
@@ -115,7 +118,7 @@ int main(void)
 void TIM3_IRQHandler(void)
 {
     // Enable LED 5 to indicate the CPU's working
-    GPIOA->BSRR |= (1 << PIN_LED_5);
+    GPIOA->BSRR = (1 << PIN_LED_5);
 
     ADC1->CR |= ADC_CR_ADSTART;
     while(ADC1->CR & ADC_CR_ADSTART);
@@ -126,6 +129,6 @@ void TIM3_IRQHandler(void)
     logtime++;
 
     // Disable LED 5 again and clear the interrupt flag
-    GPIOA->BRR |= (1 << PIN_LED_5);
+    GPIOA->BRR = (1 << PIN_LED_5);
     TIM3->SR &= ~TIM_SR_UIF;
 }

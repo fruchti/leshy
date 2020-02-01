@@ -4,9 +4,10 @@ This example reads out the microcontroller's internal temperature sensor every
 n milliseconds and saves the values to `log.csv` on the SD card. Logging is
 stopped and started again by clicking the switch attached to PA0.
 
-LED 1 (PA1) indicates ongoing initialisation, while LED 2 (PA2) is lit up as
+LED 3 (PA3) indicates ongoing initialisation, while LED 2 (PA2) is lit up as
 long as logging is taking place. LED 5 (PA 10) flashes for every saved data
-point.
+point. LED 1 (PA1) lights up when the SD card is turned off, since it is
+connected to the same pin as the SD power MOSFET's gate.
 
 The button should be pressed before removing the SD card, because the write
 cache would not be flushed otherwise.
