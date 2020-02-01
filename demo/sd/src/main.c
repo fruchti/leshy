@@ -29,16 +29,13 @@ static void StartLogging(void)
         rc = f_open(&logfile, "log.csv", FA_WRITE | FA_CREATE_ALWAYS);
         if(rc == FR_OK)
         {
+            // SD card is mounted and the log file open
             f_printf(&logfile,
                     "This file was written by a simple leshy SD card example. "
                     "More specifically, by build number %d, created on %d for "
                     "hardware revision " LESHY_HARDWARE_REVISION ".\n"
                     "The example provides a simple temperature logger:\n"
                     "Time (ms), Temperature (°C)\n", BUILD_NUMBER, BUILD_DATE);
-
-            // SD card is mounted and the log file open.
-            // Everything went OK, so LED 3 can be turned off
-            GPIOA->BRR = (1 << PIN_LED_3);
 
             // Enable the timer
             TIM3->CR1 |= TIM_CR1_CEN;
@@ -48,6 +45,15 @@ static void StartLogging(void)
             logging = 1;
         }
     }
+
+    if(!logging)
+    {
+        // Initialisation faild
+        SD_PowerOff();
+    }
+
+    // Successful or not, initialisation is finished
+    GPIOA->BRR = (1 << PIN_LED_3);
 }
 
 static void StopLogging(void)
