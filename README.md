@@ -10,8 +10,11 @@ containing:
  - 6 LEDs, one as a power LED, the other 5 controllable by the controller
  - Two pushbuttons, one pre-connected to reset
  - A micro-SD slot with a MOSFET for turning its power off
- - A large prototyping area
+ - A large prototyping area designed to make both SMT and THT prototyping as
+   convenient as possible
 
+A blog post about the reasoning behind the project and about its development
+process can be found [here](https://25120.org/post/leshy/).
 
 ## Demo projects
 
