@@ -69,7 +69,7 @@ int main(void)
         {
             NVSSavePending = false;
             NVS_Data->set_temperature = PID_SetTemperature;
-            NVS_Save();
+            NVS_Save(true);
         }
     }
 

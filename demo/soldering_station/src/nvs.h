@@ -16,7 +16,10 @@ extern NVS_Data_t *const NVS_Data;
 // defaults were restored instead
 bool NVS_Load(void);
 
-// Stores the current contents of NVS_Data to flash
-void NVS_Save(void);
+// Stores the current contents of NVS_Data to flash. Pass false as a parameter
+// to skip saving unless it can be done without a flash page erase. Returns true
+// if the operation succeeds and false if there is was an error or erasing was
+// disallowed but would have been necessary.
+bool NVS_Save(bool allow_erase);
 
 

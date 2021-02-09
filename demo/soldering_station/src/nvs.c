@@ -11,7 +11,7 @@
 #define NVS_VALID_BLOCK_MARKER  0xab34
 
 typedef struct
-__attribute__((packed))
+__attribute__((packed, aligned(2)))
 {
     // Actual block data
     NVS_Data_t data;
@@ -26,9 +26,9 @@ __attribute__((packed))
 } NVS_Block_t;
 
 __attribute__((used, section(".nvstore")))
-volatile NVS_Block_t NVS_Area[NVS_BLOCK_COUNT];
+NVS_Block_t NVS_Area[NVS_BLOCK_COUNT];
 
-volatile NVS_Block_t *NVS_FlashData;
+NVS_Block_t *NVS_FlashData;
 __attribute__((used))
 NVS_Block_t NVS_RAMData;
 
@@ -37,23 +37,26 @@ NVS_Data_t *const NVS_Data = &NVS_RAMData.data;
 static uint32_t NVS_CalculateCRC(NVS_Data_t *data)
 {
     CRC->CR = CRC_CR_RESET;
-    for(int i = 0; i < sizeof(NVS_Data_t); i++)
+    for(unsigned int i = 0; i < sizeof(NVS_Data_t); i++)
     {
         CRC->DR = ((uint8_t*)(data))[i];
     }
     return CRC->DR;
 }
 
-static void NVS_ProgramHalfWord(uint16_t *dest, uint16_t value)
+static bool NVS_ProgramHalfWord(uint16_t *dest, uint16_t value)
 {
-    FLASH->CR |= FLASH_CR_PG;
-    *(volatile uint16_t*)dest = value;
+    FLASH->CR = FLASH_CR_PG;
+    *(uint16_t*)dest = value;
     while(FLASH->SR & FLASH_SR_BSY);
     if(*dest != value)
     {
         // Write failed
-        __asm__("bkpt");
+        FLASH->CR = 0x00000000;
+        return false;
     }
+    FLASH->CR = 0x00000000;
+    return true;
 }
 
 static void NVS_UnlockFlash(void)
@@ -66,12 +69,12 @@ static void NVS_UnlockFlash(void)
     }
 }
 
-static void NVS_EraseArea(void)
+static bool NVS_EraseArea(void)
 {
-    for(int i = 0; i < NVS_AREA_SIZE; i += 1024)
+    for(unsigned int i = 0; i < NVS_AREA_SIZE; i += 1024)
     {
         while(FLASH->SR & FLASH_SR_BSY);
-        FLASH->CR |= FLASH_CR_PER;
+        FLASH->CR = FLASH_CR_PER;
         FLASH->AR = (uint32_t)NVS_Area + i;
         FLASH->CR |= FLASH_CR_STRT;
         while(FLASH->SR & FLASH_SR_BSY);
@@ -83,15 +86,17 @@ static void NVS_EraseArea(void)
         else
         {
             // Erase failed
-            __asm__("bkpt");
+            FLASH->CR = 0x00000000;
+            return false;
         }
-        FLASH->CR &= ~FLASH_CR_PER;
+        FLASH->CR = 0x00000000;
     }
+    return true;
 }
 
 static bool NVS_BlockEmpty(NVS_Block_t *block)
 {
-    for(int i = 0; i < sizeof(NVS_Block_t) / 2; i++)
+    for(unsigned int i = 0; i < sizeof(NVS_Block_t) / 2; i++)
     {
         if(*((uint16_t*)block + i) != 0xffff)
         {
@@ -110,10 +115,10 @@ bool NVS_Load(void)
 {
     RCC->AHBENR |= RCC_AHBENR_CRCEN;
 
-    volatile NVS_Block_t *block = NULL;
+    NVS_Block_t *block = NULL;
 
     // Find valid block
-    for(int i = 0; i < NVS_BLOCK_COUNT; i++)
+    for(unsigned int i = 0; i < NVS_BLOCK_COUNT; i++)
     {
         block = &NVS_Area[i];
         if(block->marker == NVS_VALID_BLOCK_MARKER)
@@ -146,7 +151,7 @@ bool NVS_Load(void)
     }
 }
 
-void NVS_Save(void)
+bool NVS_Save(bool allow_erase)
 {
     NVS_UnlockFlash();
 
@@ -158,7 +163,15 @@ void NVS_Save(void)
     if(current_block == NULL || next_block > NVS_Area + NVS_BLOCK_COUNT
         || !NVS_BlockEmpty(next_block))
     {
-        NVS_EraseArea();
+        if(!allow_erase)
+        {
+            return false;
+        }
+
+        if(!NVS_EraseArea())
+        {
+            return false;
+        }
         next_block = &NVS_Area[0];
         current_block = NULL;
     }
@@ -167,16 +180,24 @@ void NVS_Save(void)
     NVS_RAMData.marker = NVS_VALID_BLOCK_MARKER;
 
     // The block length is guaranteed to be divisible by 2
-    for(int i = 0; i < sizeof(NVS_Block_t) / 2; i++)
+    for(unsigned int i = 0; i < sizeof(NVS_Block_t) / 2; i++)
     {
-        NVS_ProgramHalfWord((uint16_t*)next_block + i,
-            *((uint16_t*)&NVS_RAMData + i));
+        if(!NVS_ProgramHalfWord((uint16_t*)next_block + i,
+            *((uint16_t*)&NVS_RAMData + i)))
+        {
+            return false;
+        }
     }
 
     if(current_block != NULL)
     {
-        NVS_ProgramHalfWord((uint16_t*)&current_block->marker, 0x0000);
+        if(!NVS_ProgramHalfWord((uint16_t*)&current_block->marker, 0x0000))
+        {
+            return false;
+        }
     }
 
     NVS_FlashData = next_block;
+
+    return true;
 }
